@@ -1,0 +1,41 @@
+.intro {
+  @include container('normal');
+  @include responsify($spacing-lg, 'margin-top');
+  @include responsify($spacing-lg, 'margin-bottom');
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+
+  &__text {
+    @include font("intro-bold");
+    @include responsify($font-sizes-lg);
+    @include responsify($spacing-xs, padding);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18rem;
+    height: 5rem;
+    margin: 0 auto;
+    text-align: center;
+    color: $color-black;
+    font-family: $font-family-intro;
+    text-transform: uppercase;
+
+    @media (prefers-color-scheme: dark) {
+      color: $color-white;
+    }
+
+    @include media('>=md') {
+      //position: absolute;
+      //top: 50%;
+      //bottom: 0;
+      //left: 0;
+      //right: 0;
+      width: 26rem;
+      //transform: translateY(-50%);
+    }
+  }
+}

@@ -1,0 +1,146 @@
+
+@-ms-viewport { width: device-width; }
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  display: flex;
+  min-height: 100%;
+  box-sizing: border-box;
+  font-size: $font-size-root;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+html,
+body {
+  width: 100%;
+}
+
+body {
+  @include font-smoothing;
+  flex: 1;
+  background: $color-white;
+  color: $color-black;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  font-weight: 400;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  -webkit-overflow-scrolling: touch;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: $body-bg;
+    color: $text-color;
+  }
+
+  #app {
+    @include responsify($spacing-lg, margin);
+    @include responsify($spacing-no, padding);
+    display: flex;
+    flex: 1 1 auto;
+    flex-flow: column;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+p {
+  break-inside: avoid;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+a,
+.link {
+  color: $link-color;
+  text-decoration: $link-decoration;
+  transition: $link-transition;
+
+  @media (prefers-color-scheme: dark) {
+    color: $text-color;
+  }
+
+  .no-touchevents & {
+    &:hover {
+      color: $link-hover-color;
+      text-decoration: $link-hover-decoration;
+    }
+  }
+}
+
+hr {
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  margin: 1.5rem 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+ol ol,
+ul ul,
+ol ul,
+ul ol {
+  margin-bottom: 0;
+}
+
+blockquote {
+  margin: 0 0 1.5rem;
+}
+
+[role="button"] {
+  cursor: pointer;
+}
+
+a,
+area,
+button,
+[role="button"],
+input,
+label,
+select,
+summary,
+textarea {
+  touch-action: manipulation;
+}
+
+[hidden],
+.hidden {
+  display: none !important;
+}
+
+.text,
+p {
+  @include responsify($font-sizes-md);
+}
+
+.contact-link {
+  @include responsify($spacing-md, margin-bottom);
+  @include linkHover();
+
+  &:last-of-type {
+    @include responsify($spacing-no, margin-bottom);
+  }
+}
+
+
+

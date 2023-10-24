@@ -1,0 +1,70 @@
+.hamburger {
+  $bar: '.hamburger__bar';
+  position: relative;
+  top: 50%;
+  width: 30px;
+  height: 100%;
+  transform: scaleX(-1) translateY(-50%);
+
+  @include media('>=md') {
+    display: none;
+  }
+
+  &__inner {
+    position: relative;
+  }
+
+  &__bar {
+    $bar: &;
+    position: absolute;
+    display: block;
+    width: 15px;
+    top: 14px;
+    height: 2px;
+    background: $color-white;
+    transition: transform 0.2s ease-in-out;
+
+    &:after,
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      height: 2px;
+      background: $color-white;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &:before {
+      width: 30px;
+      bottom: 10px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    &:after {
+      width: 24px;
+      top: 10px;
+    }
+  }
+
+  &--is-active {
+    outline: none;
+
+    #{$bar} {
+      top: 4px;
+      width: 30px;
+      transform: translate3d(0, 10px, 0) rotate(45deg);
+
+      &:before {
+        transform: rotate(-45deg) translate3d(0, 0, 0);
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      &:after {
+        top: 20px;
+        width: 30px;
+        transform: translate3d(0, -20px, 0) rotate(-90deg);
+      }
+    }
+  }
+}

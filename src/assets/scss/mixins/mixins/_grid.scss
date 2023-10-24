@@ -1,0 +1,62 @@
+// GRID mixins
+@use "sass:math";
+
+@mixin grid($grid: grid, $auto-rows: auto, $cols: 1, $temp-rows: auto, $col-gap: $spacing-no, $row-gap: $spacing-no, $auto-flow: row) {
+	display: $grid;
+	grid-auto-rows: $auto-rows;
+	grid-template-columns: repeat($cols, 1fr);
+	grid-template-rows: $temp-rows;
+	grid-auto-flow: $auto-flow;
+	@include responsify($row-gap, 'grid-row-gap');
+	@include responsify($col-gap, 'grid-column-gap');
+
+	@content; // extend grid
+}
+
+@mixin grid-temp-col($cols: 1) {
+	grid-template-columns: repeat($cols, 1fr);
+}
+
+@mixin grid-item($col: 1, $row: 1) {
+	// font-size: 100%; // TODO: check if this is needed
+	grid-column: span $col;
+	grid-row: span $row;
+}
+
+@mixin create-grid($breakpoint, $grid-cols) {
+	// creates classes for class-based grid
+	@if $breakpoint == '' {
+		@for $i from 1 through $grid-cols {
+			@for $j from 1 through $grid-cols {
+				.element-#{$i}-#{$j} {
+					grid-column: span $i;
+					grid-row: span $j;
+				}
+			}
+		}
+	}
+	@else {
+		@include media(">=#{$breakpoint}") {
+			@for $i from 1 through $grid-cols {
+				@for $j from 1 through $grid-cols {
+					.element-#{$breakpoint}-#{$i}-#{$j} {
+						grid-column: span $i;
+						grid-row: span $j;
+					}
+				}
+			}
+		}
+	}
+}
+
+// initialize Grid
+@if ($create-grid) {
+	@each $breakpoint, $size in $breakpoints {
+		@if ($breakpoint == 'xs') {
+			@include create-grid('', $grid-max-cols);
+		}
+		@else if ($breakpoint != 'xxs' and $breakpoint != 'xs') {
+			@include create-grid($breakpoint, $grid-max-cols);
+		}
+	}
+}

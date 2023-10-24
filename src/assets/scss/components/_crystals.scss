@@ -1,0 +1,59 @@
+.crystals {
+  @include responsify($spacing-lg, padding-bottom);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  @include media(">=md") {
+    flex-flow: row;
+  }
+
+  &__single {
+    @include font("bold");
+    padding: 0.5rem 0;
+    position: relative;
+    width: 18rem;
+    background: transparent;
+    overflow: visible;
+    border-radius: 2px;
+    border: solid 1px $color-black;
+    transition: 0.2s $ease-in-out;
+    color: $color-black;
+    text-align: center;
+    cursor: pointer;
+
+    @include media(">=lg") {
+      width: 22rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      border: solid 1px $color-white;
+      color: $color-white;
+    }
+
+    &:hover {
+      @include media('>=md') {
+        transform: translateX(-5px);
+
+        &:nth-child(2n+2) {
+          transform: translateX(5px);
+        }
+      }
+    }
+
+    &--active {
+      background: $color-black;
+      color: $color-white;
+      border-color: $color-black;
+
+      @media (prefers-color-scheme: dark) {
+        background: $color-white;
+        color: $color-black;
+        border-color: $color-white;
+      }
+    }
+  }
+}
+

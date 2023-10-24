@@ -1,0 +1,44 @@
+// mixin for the fluid size calculation
+@mixin fluidsize-calc($param, $minsize, $maxsize, $breakpoint-min-value, $breakpoint-max-value) {
+	$diff: strip-unit($maxsize - $minsize);
+	$breakpointdiff: strip-unit($breakpoint-max-value - $breakpoint-min-value);
+
+	// convert em from the breakpoint to rem, to prevent influence from parent elements
+	@if (unit($breakpoint-min-value) == 'em') {
+		$breakpoint-min-value: strip-unit($breakpoint-min-value) + 'rem';
+	}
+
+	#{$param}: calc(#{$minsize} + #{$diff} * ((100vw - #{$breakpoint-min-value}) / #{$breakpointdiff}));
+}
+
+// returns a fluid size based on vw parameters - used for fluid spacing or fluid font-sizes;
+@mixin fluidsize($values: $font-sizes-sm, $param: 'font-size') {
+	// properties
+	$minsize: first($values);
+	$maxsize: last($values);
+
+	// define min-font-size
+	#{$param}: $minsize;
+
+	@if (length($values) > 1) {
+    $breakpoint-min: first(map-keys($breakpoints));
+    $breakpoint-max: last(map-keys($breakpoints));
+
+		@if (length($values) <= length($breakpoints)) {
+			$breakpoint-max: index-to-key(length($values), $breakpoints);
+		}
+
+		$breakpoint-min-value: map-get($breakpoints, $breakpoint-min);
+		$breakpoint-max-value: map-get($breakpoints, $breakpoint-max);
+
+    // define fluid font size behavior on breakpoints above minimum
+    @include media('>=#{$breakpoint-min}') {
+			@include fluidsize-calc($param, $minsize, $maxsize, $breakpoint-min-value, $breakpoint-max-value);
+		}
+
+		// define max font sizes on biggest breakpoint
+		@include media('>=#{$breakpoint-max}') {
+			#{$param}: $maxsize;
+		}
+	}
+}

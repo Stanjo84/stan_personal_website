@@ -1,0 +1,143 @@
+// Form FIELDS
+
+@use "sass:math";
+
+@mixin field($mode: 'after') {
+	// Don't use this anymore!!
+
+	@content; // custom extends
+}
+
+// use mixin to give input input behavior
+@mixin input($mode: 'after', $color: $field-color) {
+	// Don't use this anymore!!
+
+	@content; // custom extender
+}
+
+@mixin input-icon() {
+	// Don't use this anymore!!
+}
+
+@mixin textarea() {
+	// Don't use this anymore!!
+}
+
+@mixin placeholder($color: #999) {
+	&::-moz-placeholder {
+		color: $color;
+		opacity: 1;
+	}
+	&::-webkit-input-placeholder {
+		color: $color;
+	}
+	&::placeholder {
+		color: $color;
+		opacity: 1;
+	}
+}
+
+// add mixin to give element label behavior
+@mixin label($mode: 'after', $color: $field-label-color) {
+	// Don't use this anymore!!
+
+	@content; // custom extensions
+}
+
+// Container
+@mixin radio {
+	opacity: 0;
+	pointer-events: none;
+	position: absolute;
+}
+
+// Label
+@mixin radio-container($mode: 'after', $width: 2em, $height: 2em, $border: solid 0.125rem transparent, $bg-color: $field-containerbgcolor, $border-radius: 50%) {
+	position: relative;
+	display: inline-block;
+	@include responsify($spacing-sm, 'margin-right');
+
+	label {
+		$padding: 0.5em;
+		$line-height: 1.2;
+		display: inline-block;
+		line-height: $line-height;
+		padding: $padding 0;
+		position: relative;
+
+		&:before {
+			background-color: $bg-color;
+			border-radius: $border-radius;
+			border: $border;
+			content: '';
+			cursor: pointer;
+			display: block;
+			margin-top: ($width * -0.5);
+			position: absolute;
+			top: $padding + ($line-height * 0.5 * 1em); // padding-top + (line-height / 2)
+			width: $width;
+			height: $height;
+		}
+
+		&:after {
+			border: solid $field-linecolorvalid;
+			border-width: 0 0.125rem 0.125rem 0;
+			content: '';
+			display: none;
+			margin-top: (math.div($height, 3.5) * -1);
+			position: absolute;
+			top: $padding + ($line-height * 0.5 * 1em); // padding-top + (line-height / 2)
+			transform: rotate(45deg);
+			transform-origin: center;
+			width: ($width * 0.25);
+			height: ($height * 0.5);
+		}
+
+		@if $mode == 'before' {
+			padding-left: calc(#{$width} + 0.75em);
+
+			&:before {
+				left: 0;
+			}
+
+			&:after {
+				left: ($width * 0.5) - ($width * 0.125);
+			}
+		}
+
+		@if $mode == 'after' {
+			padding-right: calc(#{$width} + 0.75em);
+
+			&:before {
+				right: 0;
+			}
+
+			&:after {
+				right: ($width * 0.5) - ($width * 0.125);
+			}
+		}
+	}
+
+	// Custom Check Tick
+	input:checked + label:after  {
+		display: block;
+	}
+
+	input:focus + label:before,
+	input:checked + label:before {
+		border-color: $field-linecolorvalid;
+		background: transparent;
+	}
+
+	@content;
+}
+
+// Label Text
+@mixin radio-label() {
+	cursor: pointer;
+	span {
+		cursor: pointer;
+		vertical-align: middle;
+	}
+	@content;
+}

@@ -1,0 +1,36 @@
+body {
+	display: flex;
+	flex-flow: column;
+
+	.is-ie & {
+		display: block;
+	}
+
+	.show--nav & {
+		overflow: hidden;
+	}
+}
+
+.content {
+	flex: 1 1 auto;
+}
+
+.footer {
+	flex: 0 0 auto;
+}
+
+.container {
+  @include container('wide');
+
+  &--fluid {
+    @include container('fluid');
+  }
+
+  &--narrow {
+    @include container('narrow');
+  }
+
+  &--slim {
+    @include container('slim');
+  }
+}

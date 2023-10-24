@@ -1,0 +1,59 @@
+@mixin extra-small
+  @media only screen and (min-width: $screen-xs-min)
+    @content
+
+@mixin small
+  @media only screen and (min-width: $screen-sm-min)
+    @content
+
+@mixin medium
+  @media only screen and (min-width: $screen-md-min)
+    @content
+
+@mixin large
+  @media only screen and (min-width: $screen-lg-min)
+    @content
+
+@mixin extra-large
+  @media only screen and (min-width: $screen-xl)
+    @content
+
+@mixin verticalalign($position: absolute)
+  position: $position
+  width: 100%
+  top: 50%
+  @include transform(translateY(-50%))
+
+@mixin fontawesome
+  display: inline-block
+  font: normal normal normal 14px/1 FontAwesome
+  font-size: inherit
+  text-rendering: auto
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+
+@mixin fontregular
+  font-family: "Helvetica Neue LT W01_41488878", sans-serif
+
+@mixin fontbold
+  font-family: "Helvetica Neue LT W01_85 Heavy", sans-serif
+
+@mixin transform($args)
+  -webkit-transform: $args
+  -moz-transform: $args
+  -ms-transform: $args
+  -o-transform: $args
+  transform: $args
+
+@mixin transition($args: all 0.4s ease)
+  -webkit-transition: $args
+  -moz-transition: $args
+  -ms-transition: $args
+  -o-transition: $args
+  transition: $args
+
+@mixin middle($position: absolute)
+  position: $position
+  top: 50%
+  left: 50%
+  @include transform(translate(-50%, -50%))

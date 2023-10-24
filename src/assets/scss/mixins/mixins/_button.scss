@@ -1,0 +1,76 @@
+// Button Mixin
+@mixin button() {
+	$button: &;
+	@include reset-button();
+	@include responsify($button-padding-vertical, 'padding-top');
+	@include responsify($button-padding-vertical, 'padding-bottom');
+	@include responsify($button-padding-horizontal, 'padding-left');
+	@include responsify($button-padding-horizontal, 'padding-right');
+	@include responsify($button-font-size);
+	@include font($button-font);
+
+	border: $button-border;
+	border-radius: $button-border-radius;
+	box-shadow: $button-box-shadow;
+	transition: $button-transition;
+
+	display: inline-flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	text-align: center;
+	vertical-align: middle;
+
+	&--small {
+		@include responsify($button-small-padding-vertical, 'padding-top');
+		@include responsify($button-small-padding-vertical, 'padding-bottom');
+		@include responsify($button-small-padding-horizontal, 'padding-left');
+		@include responsify($button-small-padding-horizontal, 'padding-right');
+		@include responsify($button-small-font-size);
+
+		border: $button-small-border;
+		border-radius: $button-small-border-radius;
+		box-shadow: $button-small-box-shadow;
+	}
+
+	&--block {
+		display: flex;
+		width: 100%;
+	}
+}
+
+@mixin button-variant($bg: null, $border-color: null, $box-shadow: null, $color: null, $font: null) {
+	@if ($font != null) {
+		@include font($font);
+	}
+	@if ($bg != null) {
+		background: $bg;
+	}
+	@if ($border-color != null) {
+		border-color: $border-color;
+	}
+	@if ($box-shadow != null) {
+		box-shadow: $box-shadow;
+	}
+	@if ($color != null) {
+		color: $color;
+	}
+}
+
+@mixin button-variant-hover($bg: null, $border-color: null, $box-shadow: null, $color: null, $font: null) {
+	@include hover() {
+		&:hover {
+			@include button-variant($bg, $border-color, $box-shadow, $color, $font);
+			@content;
+		}
+	}
+}
+
+// Button hover incl. hover-additions;
+@mixin button-disabled() {
+	&[disabled] {
+		cursor: not-allowed;
+		opacity: 0.4;
+		@content;
+	}
+}

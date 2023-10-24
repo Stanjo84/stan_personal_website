@@ -1,0 +1,140 @@
+// set list of values matching breakpoints (index) for a given parameter.
+// $values: list of values to set
+// $param: parameter to assign values to
+// $negate: if value should be negated (* -1)
+// $from: start from this breakpoint (inclusive)
+// $to: stop after this breakpoint
+// $exclude: list of breakpoints to exclude
+@mixin responsify($values: (1em), $param: 'font-size', $negate: false, $prefix: '', $suffix: '', $from: null, $to: null, $exclude: ()) {
+
+	// get the index for the from and to breakpoints
+	$fromIndex: index(($breakpoints), ($from breakpoint($from)));
+	$toIndex: index(($breakpoints), ($to breakpoint($to)));
+
+	// set default index, if no index is returned
+	$fromIndex: 0 !default;
+	$toIndex: length($breakpoints) !default;
+
+	// only set initial value if:
+	// - from index is below or equal to 1 (0 means no from breakpoint)
+	// - first breakpoint is not in the list of excluded breakpoints
+	@if ($fromIndex <= 1 and not index($exclude, index-to-key(1, $breakpoints))) {
+		@if ($negate) {
+			#{$param}: #{$prefix}#{-1 * first($values)}#{$suffix};
+		}
+		@else {
+			#{$param}:  #{$prefix}#{first($values)}#{$suffix};
+		}
+	}
+
+	// loop through the list of breakpoints
+	@each $breakpoint, $size in $breakpoints {
+    $index: index(($breakpoints), ($breakpoint $size));
+
+		// only set value if:
+		// - the index is not below the from index
+		// - the index is not above the to index
+		// - the index is not in the list of excluded breakpoints
+		@if ($index >= $fromIndex and $index <= $toIndex and not index($exclude, $breakpoint)) {
+			// as a fallback, use the last value in the values list
+			$value: last($values);
+
+			// if the index is lower or equal the length of the values list, use the appropriate value
+			@if (length($values) >= $index) {
+				$value: nth($values, $index);
+			}
+
+    	@include media('>=#{$breakpoint}') {
+				@if ($negate) {
+					#{$param}: #{$prefix}#{-1 * $value}#{$suffix};
+        }
+        @else {
+					#{$param}: #{$prefix}$value#{$suffix};
+				}
+			}
+		}
+	}
+}
+
+
+// set list of values matching breakpoints (index) for a given parameter.
+// uses fluid size calc between breakpoints if applicable.
+// $values: list of values to set
+// $param: parameter to assign values to
+// $from: start from this breakpoint (inclusive)
+// $to: stop after this breakpoint
+@mixin responsify-fluid($values: (1em), $param: 'font-size', $from: null, $to: null) {
+
+	// get the index for the from and to breakpoints
+	$fromIndex: index(($breakpoints), ($from breakpoint($from)));
+	$toIndex: index(($breakpoints), ($to breakpoint($to)));
+
+	// set default index, if no index is returned
+	$fromIndex: 0 !default;
+	$toIndex: length($breakpoints) !default;
+
+	// only set initial value if:
+	// - from index is below or equal to 1 (0 means no from breakpoint)
+	@if ($fromIndex <= 1) {
+		#{$param}: first($values);
+	}
+
+	// loop through the list of breakpoints
+	@each $breakpoint, $size in $breakpoints {
+    $index: index(($breakpoints), ($breakpoint $size));
+
+		// only set value if:
+		// - the index is not below the from index
+		// - the index is not above the to index
+		@if ($index >= $fromIndex and $index <= $toIndex) {
+
+			// set the index for the next breakpoint
+			$nextIndex: $index + 1;
+
+			// check if the next index exceeds the length of the breakpoints
+			@if ($nextIndex > length($breakpoints)) {
+				$nextIndex: length($breakpoints);
+			}
+
+			// check if the next index is higher than the to index
+			@if ($nextIndex > $toIndex) {
+				$nextIndex: $toIndex;
+			}
+
+			// get key and size of the next breakpoint
+			$nextBreakpoint: index-to-key($nextIndex, $breakpoints);
+			$nextSize: map-get($breakpoints, $nextBreakpoint);
+
+			// as a fallback, use the last value in the values list
+			$value: last($values);
+			$nextValue: last($values);
+
+			// if the index is lower or equal the length of the values list, use the appropriate value
+			@if (length($values) >= $index) {
+				$value: nth($values, $index);
+			}
+
+			// if the next index is lower or equal the length of the values list, use the appropriate value
+			@if (length($values) >= $nextIndex) {
+				$nextValue: nth($values, $nextIndex);
+			}
+
+    	@include media('>=#{$breakpoint}') {
+				// if value and next value (or index and next index) are identical, don't use fluid size calc
+				@if ($value == $nextValue or $index == $nextIndex) {
+					#{$param}: $value;
+				}
+				@else {
+					// set values for the fluid size calc
+					$minsize: $value;
+					$maxsize: $nextValue;
+					$breakpoint-min-value: $size;
+					$breakpoint-max-value: $nextSize;
+
+					@include fluidsize-calc($param, $minsize, $maxsize, $breakpoint-min-value, $breakpoint-max-value);
+				}
+			}
+		}
+	}
+}
+

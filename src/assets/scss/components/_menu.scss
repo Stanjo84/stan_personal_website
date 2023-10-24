@@ -1,0 +1,12 @@
+.menu-main {
+  @include responsify($spacing-lg, padding-bottom);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  @include media(">=md") {
+    flex-flow: row;
+  }
+}

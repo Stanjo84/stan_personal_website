@@ -1,0 +1,52 @@
+@mixin reset-list() {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@mixin reset-link($color: inherit, $color-hover: inherit, $text-decoration: none, $text-decoration-hover: none) {
+	color: $color;
+	text-decoration: $text-decoration;
+
+	@include hover() {
+		&:hover {
+			color: $color-hover;
+			text-decoration: $text-decoration-hover;
+		}
+	}
+}
+
+@mixin reset-button() {
+	appearance: none;
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	cursor: pointer;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+@mixin reset-input() {
+	appearance: none;
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	margin: 0;
+	outline: 0;
+	padding: 0;
+}
+
+@mixin reset-fieldset-legend() {
+	@include reset-input();
+	display: block;
+	float: left;
+	width: 100%;
+
+	+ * {
+			clear: both;
+	}
+}

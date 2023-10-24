@@ -1,0 +1,9 @@
+// responsive bg bgimages helper
+@mixin bg-image($name, $type:'jpg', $imgsuffix-small:'small') {
+	@include media("<#{$breakpoint-largeimage}") {
+		background-image: url("#{$asset-base-path}#{$name}_#{$imgsuffix-small}.#{$type}");
+	}
+	@include media(">=#{$breakpoint-largeimage}") {
+		background-image: url("#{$asset-base-path}#{$name}.#{$type}");
+	}
+}

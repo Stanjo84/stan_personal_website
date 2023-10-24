@@ -1,0 +1,88 @@
+// font-sizes: add as many as you want and also as many steps as you want. They are used step by step for responsive screens, beginning with the smallest resolution
+// example: [default size and size for first entry in responsive breakpoints list], [size for second entry upwards], [size for third entry upwars] ,...
+// example: [default size and size for first entry in responsive breakpoints list], [size for second entry upwards], [size for third entry upwars] ,...
+$font-sizes-xxs: 0.75rem, 0.75rem, 0.875rem, 0.875rem;
+$font-sizes-xs: 1rem, 1rem, 1rem, 1rem;
+$font-sizes-sm: 1rem, 1.125rem, 1.125rem, 1.25rem;
+$font-sizes-nm: 1.25rem, 1.25rem, 1.625rem, 1.625rem, 1.625rem;
+$font-sizes-md: 1.25rem, 1.5rem, 1.625rem, 1.875rem;
+$font-sizes-lg: 1.5rem, 1.875rem, 2.25rem, 3.125rem;
+$font-sizes-xl: 1.625rem, 2.5rem, 3rem, 4.375rem;
+
+$font-sizes-list: 1.5rem, 1.8rem, 1.9rem, 2rem;
+
+// define line heights, to responsify them later
+$line-height-sm: 1, 1, 1, 1;
+$line-height-lg: 1.2, 1.3, 1.35;
+
+// font families
+$font-family-sans-serif:     system, -apple-system, BlinkMacSystemFont, ".SFNSText-Regular", "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, Oxygen-Sans, Ubuntu, Cantarell, "Lucida Grande", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$font-family-serif:          Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", "Times New Roman", Times, serif;
+$font-family-monospace:      Menlo, Monaco, Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+$font-family-yantramanav:   'Yantramanav', sans-serif;
+$font-family-base:           $font-family-yantramanav;
+
+$font-family-intro:          'Teko', cursive;;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-intro-weight-bold: 600;
+$font-weight-bold: 700;
+$font-weight-italic: 400;
+
+$font-style-normal: normal;
+$font-style-italic: italic;
+
+// font-face-helper
+@mixin font-face($name, $filename, $weight: null, $style: null, $exts: eot woff2 woff ttf svg) {
+	$src: null;
+
+	$extmods: (
+		eot: "?",
+		svg: "#" + str-replace($name, " ", "_")
+	);
+
+	$formats: (
+		otf: "opentype",
+		ttf: "truetype"
+	);
+
+	@each $ext in $exts {
+		$extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+		$format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+		$src: append($src, url(quote($fonts-base-path + $filename + "." + $extmod)) format(quote($format)), comma);
+	}
+
+	@font-face {
+		font-family: quote($name);
+		font-style: $style;
+		font-weight: $weight;
+		src: $src;
+	}
+}
+
+@font-face {
+  font-family: "Teko";
+  font-weight: $font-weight-normal;
+  src: url("/src/assets/fonts/Teko-Regular.woff2") format("woff2"), url("/src/assets/fonts/Teko-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Teko";
+  font-weight: $font-intro-weight-bold;
+  src: url("/src/assets/fonts/Teko-Bold.woff2") format("woff2"), url("/src/assets/fonts/Teko-Bold.woff") format("woff");
+}
+
+// ADD FONTS HERE with mixin
+// example
+// @include font-face('proxima-nova-web', 'proxima-nova-light', normal, null, woff2 woff);
+// @include font-face('proxima-nova-web', 'proxima-nova-bold', bold, null, woff2 woff);
+
+
+/* Previous Files */
+$font-size-root: 16px;
+$font-size-base: 1rem;
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.25rem;
+$line-height-base: 1.3;

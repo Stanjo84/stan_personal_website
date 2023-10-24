@@ -1,0 +1,17 @@
+@mixin container($size: 'normal', $padding: true) {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+
+	@if $padding {
+		@include responsify($side-margins, "padding-right");
+		@include responsify($side-margins, "padding-left");
+	}
+
+	@each $sizeitem in $container-sizes {
+		@if $sizeitem == $size {
+			$index: index($container-sizes, $size);
+			max-width: nth($container-max-widths, $index); // set max-width to according list value
+		}
+	}
+}

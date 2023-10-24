@@ -1,0 +1,104 @@
+.text {
+  @include responsify($spacing-xl, 'margin-bottom');
+  @include responsify($spacing-xl, 'margin-top');
+  text-align: center;
+
+  &__content {
+    @include media($breakpoint-desktop-up) {
+      line-height: 1.7;
+    }
+
+    &-value {
+      @include font("bold");
+      @include responsify($font-sizes-list);
+
+      @include media($breakpoint-desktop-down) {
+        display: block;
+      }
+    }
+
+		&--contact {
+			display: flex;
+			flex-flow: column;
+			gap: 1rem;
+			align-items: center;
+		}
+  }
+
+  a {
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      display: inline-flex;
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+    }
+  }
+}
+
+// form fields mapping example
+
+.field-container {
+  @include responsify($spacing-sm, 'margin-bottom');
+  @include field();
+
+  .input {
+    @include input();
+  }
+
+  .textarea {
+    @include textarea();
+  }
+
+  .label {
+    @include label();
+  }
+}
+
+.radio-container {
+  @include responsify($spacing-md, 'margin-bottom');
+
+  .check-box {
+    &--before {
+      @include radio-container('before');
+    }
+
+    &--after {
+      @include radio-container('after');
+    }
+
+    input {
+      @include radio();
+    }
+
+    label {
+      @include radio-label();
+    }
+  }
+}
+
+.checkbox-container {
+  @include responsify($spacing-md, 'margin-bottom');
+
+  .check-box {
+    &--before {
+      @include radio-container('before', $border-radius: 0px);
+    }
+
+    &--after {
+      @include radio-container('after', $border-radius: 0px);
+    }
+
+    input {
+      @include radio();
+    }
+
+    label {
+      @include radio-label();
+    }
+  }
+}

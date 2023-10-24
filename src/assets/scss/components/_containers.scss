@@ -1,0 +1,117 @@
+.container {
+  @include container('wide');
+
+  &--fluid {
+    @include container('fluid');
+  }
+
+  &--narrow {
+    @include container('narrow');
+  }
+
+  &--slim {
+    @include container('slim');
+  }
+}
+
+.demo {
+  &__container {
+    &-margin {
+      @include responsify($spacing-sm, 'margin-bottom');
+      background: #EDCE9E; // this color should match the color for margins from chrome inspector
+    }
+
+    &-highlighted {
+      background: #CCDFB7; // this color should match the color for paddings from chrome inspector
+    }
+
+    &-inner {
+      background: #AEC3E8; // this color should match the color for the element from chrome inspector
+    }
+
+  }
+}
+
+// form fields mapping example
+
+.field-container {
+  @include responsify($spacing-sm, 'margin-bottom');
+  @include field();
+
+  .input {
+    @include input();
+  }
+
+  .textarea {
+    @include textarea();
+  }
+
+  .label {
+    @include label();
+  }
+}
+
+.radio-container {
+  @include responsify($spacing-md, 'margin-bottom');
+
+  .check-box {
+    &--before {
+      @include radio-container('before');
+    }
+
+    &--after {
+      @include radio-container('after');
+    }
+
+    input {
+      @include radio();
+    }
+
+    label {
+      @include radio-label();
+    }
+  }
+}
+
+.checkbox-container {
+  @include responsify($spacing-md, 'margin-bottom');
+
+  .check-box {
+    &--before {
+      @include radio-container('before', $border-radius: 0px);
+    }
+
+    &--after {
+      @include radio-container('after', $border-radius: 0px);
+    }
+
+    input {
+      @include radio();
+    }
+
+    label {
+      @include radio-label();
+    }
+  }
+}
+
+.grid-container {
+  @include grid($cols: 2, $col-gap: $spacing-sm, $row-gap: $spacing-sm);
+  color: $color-white;
+
+  @include media('>=lg') {
+    @include grid($cols: 3, $col-gap: $spacing-sm, $row-gap: $spacing-sm);
+  }
+
+  span {
+    @include grid-item(1, 1);
+    @include responsify($spacing-md, padding);
+    background: $color-grey-light;
+    color: $color-black;
+    min-height: 200px;
+
+    &.grid-test {
+      @include grid-item(2, 1);
+    }
+  }
+}

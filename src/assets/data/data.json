@@ -1,0 +1,16 @@
+[
+  {"name": "FWG Selfordering Station", "data_id": "fso"},
+  {"name": "FWG Yoordi App", "data_id": "yoordi"},
+  {"name": "Kitchen Republic", "data_id": "kr"},
+  {"name": "FWG.ch", "data_id": "fwgch"},
+  {"name": "negishi.ch", "data_id": "negishi"},
+  {"name": "dieci.ch", "data_id": "dieci"},
+  {"name": "josefdolder.ch", "data_id": "dolder"},
+  {"name": "loasia.ch", "data_id": "loasia"},
+  {"name": "elektron.ch", "data_id": "elektron"},
+  {"name": "guaveinteractive.ch", "data_id": "guaveint"},
+  {"name": "guavemotion.ch", "data_id": "guavemot"},
+  {"name": "eatcommerce.ch", "data_id": "eatcom"},
+  {"name": "peka.ch", "data_id": "peka"},
+  {"name": "baulink.ch", "data_id": "baulink"}
+]

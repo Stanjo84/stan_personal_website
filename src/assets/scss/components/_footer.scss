@@ -1,0 +1,8 @@
+.footer {
+  @include responsify($spacing-lg, 'margin-top');
+  @include responsify($spacing-sm, padding-top);
+  @include responsify($spacing-sm, padding-bottom);
+  flex: 0 0 auto;
+  border-top: solid 2px $color-white;
+  text-align: right;
+}

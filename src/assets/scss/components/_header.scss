@@ -1,0 +1,246 @@
+.site-header {
+  flex: 0 0 auto;
+  border-bottom: solid 2px $color-white;
+}
+
+.header {
+	background: $color-guave;
+	color: $color-white;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	position: sticky;
+	top: 0;
+	z-index: 999999999;
+
+	&__content {
+		@include container('normal');
+		display: flex;
+		justify-content: space-between;
+		align-content: center;
+		align-items: center;
+	}
+
+	&__logo {
+		color: $color-white;
+		display: block;
+		width: 12rem;
+		height: auto;
+		margin-right: 1rem;
+		position: relative;
+		z-index: 10;
+
+		@include media('>=md') {
+			width: 15rem;
+		}
+
+		&-svg {
+			display: block;
+			fill: currentColor;
+			width: 100%;
+			height: auto;
+		}
+	}
+
+	&__hamburger {
+		appearance: none;
+		background: transparent;
+		border: 0;
+		border-radius: 0;
+		box-shadow: none;
+		cursor: pointer;
+		color: inherit;
+		display: flex;
+		flex-flow: column;
+		justify-content: space-between;
+		align-items: stretch;
+		position: relative;
+		margin: 0;
+		padding: 0.25rem 0;
+		transition: 0.2s $ease-out-quad;
+		width: 2rem;
+		height: 2rem;
+		z-index: 10;
+
+		@include media('>=md') {
+			display: none;
+		}
+
+		&-line {
+			background: currentColor;
+			display: block;
+			transform-origin: right center;
+			transition: 0.2s $ease-out-quad;
+			width: 100%;
+			height: 0.125rem;
+
+			.show--nav & {
+				&:nth-child(1) {
+					transform: rotate(-45deg);
+				}
+				&:nth-child(2) {
+					opacity: 0;
+					transform: scale(0, 1);
+				}
+				&:nth-child(3) {
+					transform: rotate(45deg);
+				}
+			}
+		}
+	}
+
+	&__navigation {
+		$items: 3;
+		@include media('<md') {
+			background: $color-guave;
+			opacity: 0;
+			pointer-events: none;
+			position: fixed;
+			top: 0;
+			right: 0;
+			bottom: 100%;
+			left: 0;
+			transition-property: opacity, visibility, bottom;
+			transition-duration: 0.1s, 0s, 0s;
+			transition-delay: 0s, 0.1s, 0.1s;
+			visibility: hidden;
+
+			.show--nav & {
+				opacity: 1;
+				pointer-events: all;
+				bottom: 0;
+				transition-delay: 0s, 0s, 0s;
+				visibility: visible;
+			}
+		}
+
+		&-list {
+			color: $color-white;
+			display: flex;
+			text-transform: uppercase;
+
+			@include media('<md') {
+				flex-flow: column;
+				justify-content: flex-start;
+				align-content: center;
+				align-items: center;
+				margin: 0;
+				padding: 0;
+				overflow: auto;
+				-webkit-overflow-scrolling: touch;
+				position: absolute;
+				top: 0;
+				right: 0;
+				bottom: 0;
+				left: 0;
+			}
+
+			@include media('>=md') {
+				justify-content: flex-end;
+				margin: 0;
+			}
+		}
+
+
+		&-item {
+			@include media('<md') {
+				opacity: 0;
+				padding: 1rem;
+				transform: translate3d(0, 1em, 0);
+				transition: 0.2s $ease-out-quad;
+
+				&:first-child {
+					margin-top: auto;
+				}
+
+				&:last-child {
+					margin-bottom: auto;
+				}
+
+				@for $i from 0 through $items {
+					$ii: ($items - $i);
+					&:nth-child(#{$ii + 1}) {
+						transition-delay: ($i * 0.015s);
+					}
+				}
+
+				.show--nav & {
+					opacity: 1;
+					transform: none;
+					transition: 0.5s $ease-out-expo;
+
+					@for $i from 0 through $items {
+						&:nth-child(#{$i + 1}) {
+							transition-delay: ($i * 0.025s);
+						}
+					}
+				}
+			}
+
+			@include media('>=md') {
+				padding: 0 0 0 1rem;
+			}
+		}
+
+		&-link {
+			position: relative;
+
+			&:before,
+			&:after {
+				background: currentColor;
+				content: '';
+				opacity: 0.5;
+				position: absolute;
+				transition: 0.2s $ease-out-quad;
+				width: 0;
+				height: 0.125em;
+			}
+
+			&:before {
+				bottom: 100%;
+				left: 0;
+			}
+
+			&:after {
+				top: 100%;
+				right: 0;
+			}
+
+			@include hover() {
+				&:hover {
+					&:before {
+						right: 0;
+						left: auto;
+						width: 100%;
+					}
+					&:after {
+						right: auto;
+						left: 0;
+						width: 100%;
+					}
+				}
+			}
+
+			&:focus,
+			&:active,
+			&--active {
+				&:before {
+					right: 0;
+					left: auto;
+					width: 100%;
+				}
+				&:after {
+					right: auto;
+					left: 0;
+					width: 100%;
+				}
+			}
+
+			&--active {
+				&:before,
+				&:after {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}

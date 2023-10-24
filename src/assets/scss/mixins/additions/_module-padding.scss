@@ -1,0 +1,15 @@
+@mixin module-padding($top: true, $bottom: true) {
+	$el: &;
+
+	@if ($top) {
+		&:not(#{$el}--no-padding):not(#{$el}--no-padding-top) {
+			@include responsify($spacing-module, 'padding-top');
+		}
+	}
+
+	@if ($bottom) {
+		&:not(#{$el}--no-padding):not(#{$el}--no-padding-bottom) {
+			@include responsify($spacing-module, 'padding-bottom');
+		}
+	}
+}

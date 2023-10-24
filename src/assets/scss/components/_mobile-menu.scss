@@ -1,0 +1,79 @@
+.mobile-menu {
+  @include responsify($header-height, padding-top);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  transform: translateX(120%);
+  transform-origin: right;
+  background: transparent;
+  z-index: 3;
+  transition: transform 0.2s ease-in-out;
+
+  @include media('>=md') {
+    display: none;
+  }
+
+  &--active {
+    display: flex;
+    transform: translateX(0);
+    //animation: slideIn 0.2s 0.2s forwards;
+  }
+}
+
+@keyframes slideIn {
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.menu-element {
+  text-align: center;
+
+  &__single {
+    @include responsify($font-sizes-xl);
+    @include responsify($spacing-lg, padding-top);
+    @include responsify($spacing-lg, padding-bottom);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-flow: column;
+    color: $color-white;
+
+    &:first-of-type {
+      @include responsify($spacing-no, padding-top);
+    }
+
+    &:last-of-type {
+      @include responsify($spacing-no, padding-bottom);
+    }
+
+    &--bordered {
+      position: relative;
+
+      &:after,
+      &:before {
+        content: '';
+        position: absolute;
+        width: 120px;
+        height: 2px;
+        background: $color-white;
+      }
+
+      &:before {
+        bottom: 0;
+      }
+
+      &:after {
+        top: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.main-nav {
+  @include responsify($spacing-sm, padding-top);
+  @include responsify($spacing-sm, padding-bottom);
+  display: flex;
+  justify-content: space-between;
+
+  &__list {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+  }
+
+  &__item {
+    @include responsify($spacing-xs, margin-right);
+    display: none;
+
+    &:last-of-type {
+      @include responsify($spacing-no, margin-right);
+    }
+
+    @include media('>=md') {
+      display: block;
+    }
+
+    &--mobile-menu {
+      display: block;
+      position: relative;
+      width: 30px;
+      height: 30px;
+
+      @include media('>=md') {
+        display: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+.portfolio {
+  $portfolio: &;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 3rem;
+
+  @include media(">=md") {
+    flex-flow: row;
+  }
+
+  &__index {
+    display: flex;
+    flex-flow: column;
+    align-items: flex-start;
+    flex: 0 0 100%;
+
+    @include media($breakpoint-desktop-up) {
+      flex: 0 0 30%;
+    }
+  }
+
+  &__grid {
+    @include grid($cols: 1, $col-gap: $spacing-no, $row-gap: $spacing-no, $auto-flow: row dense);
+    flex: 1;
+    width: 100%;
+  }
+
+  &__single {
+    position: relative;
+    aspect-ratio: 2/1;
+    overflow: hidden;
+
+    &:hover {
+      img {
+        transform: scale(1.05);
+      }
+    }
+
+    img {
+      @include full-height-media();
+      transition: 0.3s $ease-out-quad;
+    }
+
+    &-link {
+      @include reset-link;
+      //display: block;
+
+      @include media($breakpoint-desktop-up) {
+      }
+
+      &:after {
+        display: none !important;
+      }
+
+      &.hide {
+        //display: none;
+        opacity: 0;
+        height: 0;
+        visibility: hidden;
+        transition: 0.3s $ease-out-quad;
+      }
+
+      &:not(.hide) {
+        opacity: 1;
+        height: auto;
+        visibility: visible;
+        transition: 0.3s $ease-out-quad;
+      }
+    }
+
+    &-info {
+      @include responsify($spacing-md, margin-top);
+      @include fluidsize($font-sizes-nm);
+    }
+
+    &--app {
+      aspect-ratio: 0.7/1;
+    }
+  }
+
+  &__title {
+    @include linkHover();
+    margin-bottom: 0.4em;
+
+    &--active {
+      @include linkHover($reverse: true);
+    }
+  }
+}
