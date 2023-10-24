@@ -24,7 +24,7 @@ function Portfolio() {
                 <div className="portfolio">
                     <div className="portfolio__grid">
                         {worksData.length > 0 && worksData.map((item, index) => (
-                            <a href="javascript:void(0)" className={`portfolio__single-link ${activeLink === item.data_id || (activeLink === null && index === 0) ? '' : 'hide'}`} data-link="" data-id={item.data_id} key={item.data_id}>
+                            <a href={item.link} className={`portfolio__single-link ${activeLink === item.data_id || (activeLink === null && index === 0) ? '' : 'hide'}`} data-link="" data-id={item.data_id} key={item.data_id} target={"_blank"}>
                                 <div className={`portfolio__single ${item.app ? ' portfolio__single--app': '' }`}>
                                     <img src={`/assets/img/${item.image}`} alt="" />
                                 </div>
