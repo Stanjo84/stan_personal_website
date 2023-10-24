@@ -12,7 +12,8 @@
   &__text {
     @include font("intro-bold");
     @include responsify($font-sizes-lg);
-    @include responsify($spacing-xs, padding);
+    @include responsify($spacing-xs, padding-left);
+    @include responsify($spacing-xs, padding-right);
     display: flex;
     align-items: center;
     justify-content: center;

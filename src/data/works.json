@@ -1,0 +1,128 @@
+[
+  {
+    "name": "FWG Selfordering Station",
+    "data_id": "fso",
+    "image": "selforder.png",
+    "info": "SPA for Self Ordering Stations for Familie Wiesner Gastronomie restaurant brands build with Vue",
+    "tags": ["HTML", "SCSS", "VUE", "Vuex", "Webpack", "Grunt"],
+    "link": "javascript:void(0)",
+    "app": true
+  },
+  {
+    "name": "FWG Yoordi App",
+    "data_id": "yoordi",
+    "image": "yoordi.png",
+    "info": "Customization and design integration for a restaurant's in-house order and pay SPA built with React for Familie Wiesner Gastronomie",
+    "tags": ["tsx", "ts", "React", "Strapi"],
+    "link": "javascript:void(0)",
+    "app":  true
+  },
+  {
+    "name": "Kitchen Republic",
+    "data_id": "kr",
+    "image": "kr_hp.png",
+    "info": "Implementation of design for E-Commerce Website Familie Wiesner Gastronomie restaurant with Food Delivery System inc. custom Vue components",
+    "tags": ["html", "scss", "vue", "vuex", "PHP", "Contao", "Webpack", "Grunt"],
+    "link": "https://www.kitchen-republic.ch/de/home",
+    "app":  false
+  },
+  {
+    "name": "FWG.ch",
+    "data_id": "fwgch",
+    "image": "fwg_hp.png",
+    "info": "Company Website for Familie Wiesner Gastronomie",
+    "tags": ["HTML", "SCSS", "JS", "DDEV", "PHP", "Contao", "Webpack", "Grunt"],
+    "link": "https://www.fwg.ch/de/",
+     "app":  false
+  },
+  {
+    "name": "negishi.ch",
+    "data_id": "negishi",
+    "image": "negishi_hp.png",
+    "info": "Implement design for E-Commerce Page for Familie Wiesner Gastronomie restaurant inc. custom Vue components. Company Website for Familie Wiesner Gastronomie",
+    "tags": ["HTML", "SCSS", "vue", "vuex", "PHP", "Contao", "Webpack", "Grunt"],
+    "link": "https://www.negishi.ch/de/",
+     "app":  false
+  },
+  {
+    "name": "dieci.ch",
+    "data_id": "dieci",
+    "image": "dieci_hp.png",
+    "info": "Integrated frontend design for Pizza delivery system (integrated with Simply) inc. custom Vue components",
+    "tags": ["HTML", "SCSS", "js", "vue", "PHP", "Contao", "Webpack", "Grunt"],
+    "link": "https://www.dieci.ch/de/",
+     "app":  false
+  },
+  {
+    "name": "josefdolder.ch",
+    "data_id": "dolder",
+    "image": "mark-konig-Uu5fnOkFAdA-unsplash.jpg",
+    "info": "New Frontend & E-Commerce Store (work-in-progress)",
+    "tags": ["HTML", "SCSS", "vue", "pinia", "twig", "Contao", "DDEV"],
+    "link": "https://www.josefdolder.ch/",
+     "app":  false
+  },
+  {
+    "name": "loasia.ch",
+    "data_id": "loasia",
+    "image": "loasia.png",
+    "info": "Frontend design integration for Classic Asian food Restaurant",
+    "tags": ["HTML", "SCSS", "js", "PHP", "Contao", "Webpack", "Grunt"],
+    "link": "https://www.loasia.ch/de/",
+     "app":  false
+  },
+  {
+    "name": "elektron.ch",
+    "data_id": "elektron",
+    "image": "elektron_hp.png",
+    "info": "Company Website with custom layout for E-Commerce product presentation.",
+    "tags": ["HTML", "SCSS", "js", "PHP", "Contao", "Webpack", "Grunt"],
+    "link": "https://www.elektron.ch/de/",
+     "app":  false
+  },
+  {
+    "name": "guaveinteractive.ch",
+    "data_id": "guaveint",
+    "image": "guave_int.png",
+    "info": "Company Website Frontend Development",
+    "tags": ["HTML", "SCSS", "js", "twig", "Contao", "Webpack", "Grunt"],
+    "link": "https://www.guaveinteractive.ch/",
+     "app":  false
+  },
+  {
+    "name": "guavemotion.ch",
+    "data_id": "guavemot",
+    "image": "guave_motion.png",
+    "info": "Company Website Frontend Development",
+    "tags": ["HTML", "SCSS", "js", "twig", "Contao", "Webpack", "Grunt"],
+    "link": "https://www.guavemotion.ch/",
+     "app":  false
+  },
+  {
+    "name": "eatcommerce.ch",
+    "data_id": "eatcom",
+    "image": "eatcommerce.png",
+    "info": "Integrated Frontend Design for Guave Interactive E-Commerce Solutions",
+    "tags": ["HTML", "SCSS", "js", "php", "Contao", "Grunt", "Webpack"],
+    "link": "https://www.eatcommerce.ch/",
+     "app":  false
+  },
+  {
+    "name": "peka.ch",
+    "data_id": "peka",
+    "image": "peka.png",
+    "info": "Re-Build of company website with custom elements for E-Commerce",
+    "tags": ["HTML", "SCSS", "js", "php", "Contao", "Grunt", "Webpack"],
+    "link": "https://www.peka.ch/",
+     "app":  false
+  },
+  {
+    "name": "baulink.ch",
+    "data_id": "baulink",
+    "image": "baulink_hp.png",
+    "info": "Continuous Development for company website inc. Employee Portal. Re-design integration (still in progress)",
+    "tags": ["HTML", "SCSS", "js", "php", "WordPress", "Vite", "DDEV"],
+    "link": "https://www.baulink.ch/",
+     "app":  false
+  }
+]

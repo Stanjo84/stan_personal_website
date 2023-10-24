@@ -1,11 +1,7 @@
 import { useState } from "preact/hooks"
 
-const IndexLinks = ({titles}) => {
-    const [activeLink, setActiveLink] = useState(null);
+const IndexLinks = ({titles, setActiveLink, activeLink}) => {
 
-    const handleClick = (dataId) => {
-        setActiveLink(dataId);
-    };
     return (
         <div className="portfolio__index">
             {
@@ -14,8 +10,8 @@ const IndexLinks = ({titles}) => {
                         <a
                             href="javascript:void(0)"
                             key={index}
-                            className={`portfolio__title ${activeLink === title.data_id ? 'portfolio__title--active' : ''}`}
-                            onClick={() => handleClick(title.data_id)}
+                            className={`portfolio__title ${activeLink === title.data_id || (activeLink === null && index === 0) ? 'portfolio__title--active' : ''}`}
+                            onClick={() => setActiveLink(title.data_id)}
                             data-project=""
                             data-id={title.data_id}
                         >

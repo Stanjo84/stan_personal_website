@@ -1,5 +1,6 @@
 .menu-main {
-  @include responsify($spacing-lg, padding-bottom);
+  @include responsify($spacing-lg, 'margin-top');
+  @include responsify($spacing-lg, 'margin-bottom');
   display: flex;
   flex-flow: column;
   align-items: center;
