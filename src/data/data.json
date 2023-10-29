@@ -1,4 +1,5 @@
 [
+  {"name": "This Website", "data_id": "standev"},
   {"name": "FWG Selfordering Station", "data_id": "fso"},
   {"name": "FWG Yoordi App", "data_id": "yoordi"},
   {"name": "Kitchen Republic", "data_id": "kr"},

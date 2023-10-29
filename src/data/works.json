@@ -1,5 +1,14 @@
 [
   {
+    "name": "stanstrawa.dev",
+    "data_id": "standev",
+    "image": "standev.png",
+    "info": "This Website has been built with preactjs",
+    "tags": ["Preact", "jsx", "SCSS"],
+    "link": "https://preactjs.com/",
+    "app": false
+  },
+  {
     "name": "FWG Selfordering Station",
     "data_id": "fso",
     "image": "selforder.png",
