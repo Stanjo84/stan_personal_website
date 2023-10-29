@@ -84,7 +84,10 @@
     margin-bottom: 0.4em;
 
     &--active {
-      @include linkHover($reverse: true);
+      //@include linkHover($reverse: true);
+      &:after {
+        transform: translateX(0);
+      }
     }
   }
 }
