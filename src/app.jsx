@@ -1,12 +1,12 @@
-import {useState} from 'preact/hooks'
+import {useEffect, useState} from 'preact/hooks'
 import Bio from "./components/BioPage";
 import Contact from "./components/ContactPage";
 import Portfolio from "./components/PortfolioPage";
 import Tech from "./components/TechPage";
+import {CSSTransition, SwitchTransition} from "react-transition-group";
 
 export function App() {
-    const [showComponent, setShowComponent] = useState('bio');
-    const [activeLink, setActiveLink] = useState(false);
+    const [showComponent, setShowComponent] = useState(window.location.hash.slice(1));
 
     const btns = [
         {id: 1, name: "Bio", value: "bio"},
@@ -14,6 +14,35 @@ export function App() {
         {id: 3, name: "Portfolio", value: "portfolio"},
         {id: 4, name: "Contact", value: "contact"}
     ]
+
+    useEffect(() => {
+        window.location.hash = showComponent;
+    }, [showComponent]);
+
+    useEffect(() => {
+        const handleHashChange = () => {
+            const newHash = window.location.hash.slice(1);
+            if (newHash) {
+                setShowComponent(newHash);
+            }
+        };
+
+        window.addEventListener('hashchange', handleHashChange);
+
+        // Call the handler right away in case the page is loaded with a hash already
+        handleHashChange();
+
+        // Cleanup the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('hashchange', handleHashChange);
+        };
+    }, []);
+
+    const handleButtonClick = (componentName) => {
+        setShowComponent(componentName); // Update the component to be shown
+    };
+
+    const displayContent = showComponent || 'bio';
 
     return (
         <main id="site-content" className="site-content">
@@ -23,24 +52,37 @@ export function App() {
                 </div>
             </div>
 
+            <SwitchTransition mode="out-in">
+                <CSSTransition
+                    key={displayContent}
+                    addEndListener={(node, done) => {
+                        node.addEventListener('transitionend', done, false);
+                    }}
+                    classNames="fade"
+                >
+                    <div>
+                        {displayContent === 'bio' && <Bio />}
+                        {displayContent === 'tech' && <Tech />}
+                        {displayContent === 'portfolio' && <Portfolio />}
+                        {displayContent === 'contact' && <Contact />}
+                    </div>
+                </CSSTransition>
+            </SwitchTransition>
 
-            {showComponent === 'bio' && <Bio/>}
-            {showComponent === 'tech' && <Tech/>}
-            {showComponent === 'portfolio' && <Portfolio/>}
-            {showComponent === 'contact' && <Contact/>}
 
-            <div className="menu-main container">
-                {
-                    btns.map(btn => {
-                        return <button key={btn.id} className={`button ${activeLink === btn.value && "button--active"}`} onClick={() => {
-                            setShowComponent(btn.value)
-                            setActiveLink(btn.value);
-                        }}>
-                            {btn.name}
-                        </button>
-                    })
-                }
-            </div>
+                <nav className="menu-main container" role="navigation" aria-label="Main">
+                    {
+                        btns.map(btn => {
+                            return <button
+                                key={btn.id}
+                                className={`button ${showComponent === btn.value ? "button--active" : ""}`}
+                                onClick={() => handleButtonClick(btn.value)}
+                            >
+                                {btn.name}
+                            </button>
+                        })
+                    }
+                </nav>
         </main>
-    )
+)
 }

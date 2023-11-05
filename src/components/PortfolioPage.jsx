@@ -24,10 +24,12 @@ function Portfolio() {
                 <div className="portfolio">
                     <div className="portfolio__grid">
                         {worksData.length > 0 && worksData.map((item, index) => (
-                            <a href={item.link} className={`portfolio__single-link ${activeLink === item.data_id || (activeLink === null && index === 0) ? '' : 'hide'}`} data-link="" data-id={item.data_id} key={item.data_id} target={"_blank"}>
-                                <div className={`portfolio__single ${item.app ? ' portfolio__single--app': '' }`}>
-                                    <img src={`/assets/img/${item.image}`} alt="" />
-                                </div>
+                            <div  className={`portfolio__single-item ${activeLink === item.data_id || (activeLink === null && index === 0) ? '' : 'hide'}`} data-id={item.data_id} key={item.data_id}>
+                                <a href={item.link} className={"portfolio__single-link"} target={"_blank"}>
+                                    <div className={`portfolio__single ${item.app ? ' portfolio__single--app' : ''}`}>
+                                        <img src={`/assets/img/${item.image}`} alt=""/>
+                                    </div>
+                                </a>
                                 <div className="portfolio__single-info">
                                     {item.info}
                                     <div className="tag">
@@ -36,12 +38,12 @@ function Portfolio() {
                                         ))}
                                     </div>
                                 </div>
-                            </a>
+                            </div>
                         ))}
                     </div>
 
                     {
-                        extractedData.length > 0 &&  <IndexLinks titles={extractedData} setActiveLink={setActiveLink} activeLink={activeLink} />
+                        extractedData.length > 0 && <IndexLinks titles={extractedData} setActiveLink={setActiveLink} activeLink={activeLink}/>
                     }
                 </div>
             </div>

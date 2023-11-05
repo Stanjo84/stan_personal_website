@@ -42,19 +42,8 @@
       transition: 0.3s $ease-out-quad;
     }
 
-    &-link {
-      @include reset-link;
-      //display: block;
-
-      @include media($breakpoint-desktop-up) {
-      }
-
-      &:after {
-        display: none !important;
-      }
-
+    &-item {
       &.hide {
-        //display: none;
         opacity: 0;
         height: 0;
         visibility: hidden;
@@ -69,6 +58,14 @@
       }
     }
 
+    &-link {
+      @include reset-link;
+
+      &:after {
+        display: none !important;
+      }
+    }
+
     &-info {
       @include responsify($spacing-md, margin-top);
       @include fluidsize($font-sizes-nm);
@@ -80,11 +77,15 @@
   }
 
   &__title {
-    @include linkHover();
+    @include linkHover;
+    @include reset-button;
     margin-bottom: 0.4em;
+    color: $button-color;
+    line-height: 1.7;
 
     &--active {
-      //@include linkHover($reverse: true);
+      @include linkHover($reverse: true);
+
       &:after {
         transform: translateX(0);
       }

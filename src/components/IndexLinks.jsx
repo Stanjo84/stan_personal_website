@@ -7,8 +7,7 @@ const IndexLinks = ({titles, setActiveLink, activeLink}) => {
             {
                 titles.map((title, index) => {
                     return (
-                        <a
-                            href="javascript:void(0)"
+                        <button
                             key={index}
                             className={`portfolio__title ${activeLink === title.data_id || (activeLink === null && index === 0) ? 'portfolio__title--active' : ''}`}
                             onClick={() => setActiveLink(title.data_id)}
@@ -16,7 +15,7 @@ const IndexLinks = ({titles, setActiveLink, activeLink}) => {
                             data-id={title.data_id}
                         >
                             {title.name}
-                        </a>
+                        </button>
                     )
                 })
             }
