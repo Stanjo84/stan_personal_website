@@ -71,6 +71,7 @@ export function App() {
 
 
                 <nav className="menu-main container" role="navigation" aria-label="Main">
+                    <a href="#bio" className="skip">Skip</a>
                     {
                         btns.map(btn => {
                             return <button

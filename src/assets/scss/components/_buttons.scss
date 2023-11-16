@@ -32,7 +32,8 @@
     }
   }
 
-  &--active {
+  &--active,
+  &:focus {
     background: $color-black;
     color: $color-white;
     border-color: $color-black;

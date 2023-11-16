@@ -21,7 +21,8 @@
     }
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     &:after {
       transform: translateX(0);
 

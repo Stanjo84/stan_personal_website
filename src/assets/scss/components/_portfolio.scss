@@ -83,7 +83,8 @@
     color: $button-color;
     line-height: 1.7;
 
-    &--active {
+    &--active,
+    &:focus {
       @include linkHover($reverse: true);
 
       &:after {
