@@ -26,18 +26,16 @@ function Portfolio() {
                         {worksData.length > 0 && worksData.map((item, index) => (
                             <div  className={`portfolio__single-item ${activeLink === item.data_id || (activeLink === null && index === 0) ? '' : 'hide'}`} data-id={item.data_id} key={item.data_id}>
                                 <a href={item.link} className={"portfolio__single-link"} target={"_blank"}>
-                                    <div className={`portfolio__single ${item.app ? ' portfolio__single--app' : ''}`}>
-                                        <img src={`/assets/img/${item.image}`} alt={item.name}/>
+                                    <div className="portfolio__single-info">
+                                        {item.info}
+                                        <div className="tag">
+                                            {item.tags.map(tag => (
+                                                <div className="tag__single" key={tag}>{tag}</div>
+                                            ))}
+                                        </div>
                                     </div>
                                 </a>
-                                <div className="portfolio__single-info">
-                                    {item.info}
-                                    <div className="tag">
-                                        {item.tags.map(tag => (
-                                            <div className="tag__single" key={tag}>{tag}</div>
-                                        ))}
-                                    </div>
-                                </div>
+
                             </div>
                         ))}
                     </div>
