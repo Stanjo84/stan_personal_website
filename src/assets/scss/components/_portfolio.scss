@@ -67,7 +67,6 @@
     }
 
     &-info {
-      @include responsify($spacing-md, margin-top);
       @include fluidsize($font-sizes-nm);
     }
 
