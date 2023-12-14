@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'preact/hooks'
-import Bio from "./components/BioPage";
+import Home from "./components/HomePage.jsx";
 import Contact from "./components/ContactPage";
 import Portfolio from "./components/PortfolioPage";
 import Tech from "./components/TechPage";
@@ -9,7 +9,7 @@ export function App() {
     const [showComponent, setShowComponent] = useState(window.location.hash.slice(1));
 
     const btns = [
-        {id: 1, name: "Bio", value: "bio"},
+        {id: 1, name: "Home", value: "home"},
         {id: 2, name: "Technologies", value: "tech"},
         {id: 3, name: "Portfolio", value: "portfolio"},
         {id: 4, name: "Contact", value: "contact"}
@@ -42,7 +42,7 @@ export function App() {
         setShowComponent(componentName); // Update the component to be shown
     };
 
-    const displayContent = showComponent || 'bio';
+    const displayContent = showComponent || 'home';
 
     return (
         <main id="site-content" className="site-content">
@@ -61,7 +61,7 @@ export function App() {
                     classNames="fade"
                 >
                     <div>
-                        {displayContent === 'bio' && <Bio />}
+                        {displayContent === 'home' && <Home />}
                         {displayContent === 'tech' && <Tech />}
                         {displayContent === 'portfolio' && <Portfolio />}
                         {displayContent === 'contact' && <Contact />}
@@ -71,7 +71,7 @@ export function App() {
 
 
                 <nav className="menu-main container" role="navigation" aria-label="Main">
-                    <a href="#bio" className="skip">Skip</a>
+                    <a href="#home" className="skip">Skip</a>
                     {
                         btns.map(btn => {
                             return <button
